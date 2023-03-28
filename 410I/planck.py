@@ -112,3 +112,5 @@ def appT(i, lam):
     Tapp = c2/(lam*np.log(2*c1/(i*lam**5)+1))
     
     return Tapp
+
+print(planck_elb(1e-6,2000))
