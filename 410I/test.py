@@ -8,16 +8,38 @@ lx1 = 3    #length in x dirn
 ly1 = 5    #length in y dirn
 lz1 = 0    #length in z dirn
 
-# Define Plane 2
+
+
+# # Define Plane 2
 ang = 60*np.pi/180  # angle separating planes
-p2 = np.array([0, 0, 0])  # Point on 2
-n2 = np.array([0, -np.sin(ang), np.cos(ang)])  # normal vector for 2
 
-## range of x,y,z for surface 2
-r2 = np.array([[-2*np.cos(ang), -2*np.cos(ang)+3*np.cos(ang)], [0.0, 5.0], [2*np.sin(ang), 2*np.sin(ang)+ 3*np.sin(ang)]])
+p2 = np.array([-2*np.cos(ang), 0, 2*np.sin(ang)])  # Point on 2
+n2 = np.array([-np.sin(ang), 0.0, np.cos(ang)])  # normal vector for 2
+print(n2)
+# range of x,y,z for surface 2
+r2 = np.array([[-2.0*np.cos(ang), -2.0*np.cos(ang)+3*np.cos(ang)], [0.0, 5.0], [2*np.sin(ang), 2*np.sin(ang)+ 3*np.sin(ang)]])
 
-#Emission Position
-nRay = int(5e3)     # Number of rays
+print(p2)
+
+
+# # Angled Planes (acute angles only)----------------------
+# # Define plane 1
+# lx1 = 2    #length in x dirn
+# ly1 = 1    #length in y dirn
+# lz1 = 0    #length in z dirn
+
+# # Define Plane 2
+# ang = 75*np.pi/180  # angle separating planes
+# p2 = np.array([0, 0, 1])  # Point on 2
+# n2 = np.array([0, -np.sin(ang), np.cos(ang)])  # normal vector for 2
+
+# ## range of x,y,z for surface 2
+# r2 = np.array([[0.0, 2.0], [0.0, np.cos(ang)], [1.0, 1.0+np.sin(ang)]])
+# -----------------------------------------------------
+
+
+print(r2)
+nRay = int(10e3)     # Number of rays
 ic = 0  # intialize intersection counter
 pf = 1  # plotting flag (=1 for plot) 
 
@@ -80,13 +102,20 @@ if pf == 1:
     ax1.set_xlabel('X')
     ax1.set_ylabel('Y')
     ax1.set_zlabel('Z')
+    
     ax1.legend(['Emission','Intersection'])
-    fig1.show()
+    ax1.set_xlim([-1.6,5.8])
+    ax1.set_ylim([-0.1,5.1])
+    ax1.set_zlim([0,5.2])
+
+    plt.show()
     
-    
-    # #      Uncomment to plot emitted rays        
-    # ax1.quiver(pVec[:,0], pVec[:,1], pVec[:,2], 
-    #       dVec[:,0], dVec[:,1], dVec[:,2], 
-    #       length = 0.5,
-    #       arrow_length_ratio =0.1,
-    #       lw=0.1, color='k')
+    #      Uncomment to plot emitted rays        
+    ax1.quiver(pVec[:,0], pVec[:,1], pVec[:,2], 
+          dVec[:,0], dVec[:,1], dVec[:,2], 
+          length = 0.5,
+          arrow_length_ratio =0.1,
+          lw=0.1, color='k')
+
+        
+
