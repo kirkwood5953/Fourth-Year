@@ -41,15 +41,16 @@ winet = np.trapz(pressure,volume)
 imepnet = winet/Vs
 
 wigross = np.trapz(pressure[900:2700],volume[900:2700])
+
 imepgross = wigross/Vs
 
-bmep = T*2*np.pi*nr/Vs/100
-fmep = imepnet - bmep
+bmep = T*2*np.pi*nr/Vs/10
+fmep = imepgross - bmep
 print("Indicated Mean Effective Pressure = ",imepgross)
 print("Brake Mean Effective Pressure = ",bmep)
 print("Friction Mean Effective Pressure = ",fmep)
 
-indeff = winet/m/LHV/100
+indeff = winet/m/LHV/10
 meff = bmep/imepnet
 beff = indeff*meff
 thermeff = 1-1/(CR**(1.4-1))
